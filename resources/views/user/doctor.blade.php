@@ -48,14 +48,15 @@
     <section class="ftco-section">
 			<div class="container">
 				<div class="row">
+                    @foreach ($doctor as $dr)
 					<div class="col-md-6 col-lg-3 ftco-animate">
 						<div class="staff">
 							<div class="img-wrap d-flex align-items-stretch">
-								<div class="img align-self-stretch" style="background-image: url(images/doc-1.jpg);"></div>
+								<div class="img align-self-stretch" style="background-image: url('{{ asset('doctor_image/'.$dr->Image) }}');"></div>
 							</div>
 							<div class="text pt-3 text-center">
-								<h3>Dr. Lloyd Wilson</h3>
-								<span class="position mb-2">Denstist</span>
+								<h3>{{ $dr->name }}</h3>
+								<span class="position mb-2">{{ $dr->speciality }}</span>
 								<div class="faded">
 									<p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
 									<ul class="ftco-social text-center">
@@ -68,7 +69,8 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-6 col-lg-3 ftco-animate">
+                    @endforeach
+					{{-- <div class="col-md-6 col-lg-3 ftco-animate">
 						<div class="staff">
 							<div class="img-wrap d-flex align-items-stretch">
 								<div class="img align-self-stretch" style="background-image: url(images/doc-2.jpg);"></div>
@@ -87,8 +89,8 @@
 	              </div>
 							</div>
 						</div>
-					</div>
-					<div class="col-md-6 col-lg-3 ftco-animate">
+					</div> --}}
+					{{-- <div class="col-md-6 col-lg-3 ftco-animate">
 						<div class="staff">
 							<div class="img-wrap d-flex align-items-stretch">
 								<div class="img align-self-stretch" style="background-image: url(images/doc-3.jpg);"></div>
@@ -107,7 +109,7 @@
 	              </div>
 							</div>
 						</div>
-					</div>
+					</div> --}}
 					<div class="col-md-6 col-lg-3 ftco-animate">
 						<div class="staff">
 							<div class="img-wrap d-flex align-items-stretch">

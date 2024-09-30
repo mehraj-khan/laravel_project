@@ -21,6 +21,9 @@
                 </div>
             </div>
         </div>
+        {{-- <div class="row mt-5 justify-content-start">
+            <button class="justify">appoinment</button>
+        </div>
         @if (Route::has('login'))
         @auth
         <x-app-layout>
@@ -35,7 +38,25 @@
             </div>
         </div>
         @endauth
-        @endif
+        @endif --}}
+        <div class="row mt-5 justify-content-between">
+            <div class="col-auto">
+                <a href="{{ url('/appoinment') }}" class="btn btn-primary">Book an Appointment</a>
+            </div>
+
+            @if (Route::has('login'))
+                @auth
+
+                <x-app-layout>
+                </x-app-layout>
+                @else
+                <div class="col-auto">
+                    <a href="{{ route('login') }}" class="btn btn-primary text-dark">Login</a>
+                    <a href="{{ route('register') }}" class="btn btn-primary text-dark ms-2">Register</a>
+                </div>
+                @endauth
+            @endif
+        </div>
       </div>
 </div>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light" id="ftco-navbar">
@@ -51,6 +72,13 @@
             <li class="nav-item"><a href="{{ route('treatments') }}" class="nav-link">Treatments</a></li>
             <li class="nav-item"><a href="{{ route('blog') }}" class="nav-link">Blog</a></li>
           <li class="nav-item"><a href="{{ route('contact') }}" class="nav-link">Contact</a></li>
+          @if (Route::has('login'))
+                @auth
+          <li class="nav-item">
+                    <a href="{{ url('/myappoinment') }}" style="background-color: greenyellow; color: white; padding: 10px; margin-top: 20px;" class="nav-link">my appointment</a>
+          </li>
+          @endauth
+          @endif
         </ul>
       </div>
     </div>

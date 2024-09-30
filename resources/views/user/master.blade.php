@@ -123,13 +123,13 @@
 				    					<div class="form-field">
 		          					<div class="select-wrap">
 		                      <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-		                      <select name="" id="" class="form-control">
-		                      	<option value="">Department</option>
-		                        <option value="">Neurology</option>
-		                        <option value="">Cardiology</option>
-		                        <option value="">Dental</option>
-		                        <option value="">Ophthalmology</option>
-		                        <option value="">Other Services</option>
+		                      <select name="" id="" class="form-control text-dark">
+		                      	<option value="" class="text-dark" disabled selected>Department</option>
+		                        <option value="" class="text-dark">Neurology</option>
+		                        <option value="" class="text-dark">Cardiology</option>
+		                        <option value="" class="text-dark">Dental</option>
+		                        <option value="" class="text-dark">Ophthalmology</option>
+		                        <option value="" class="text-dark">Other Services</option>
 		                      </select>
 		                    </div>
 				              </div>
