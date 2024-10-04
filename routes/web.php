@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 // user
-Route::get('/home',[ManagementController::class,'redirect']);
+Route::get('/home',[ManagementController::class,'redirect'])->middleware('auth','verified');
 Route::get('/',[ManagementController::class,'index'])->name('index');
 Route::get('/about',[ManagementController::class,'about'])->name('about');
 Route::get('/doctor',[ManagementController::class, 'doctor'])->name('doctor');

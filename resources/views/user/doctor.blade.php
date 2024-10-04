@@ -58,7 +58,7 @@
 								<h3>{{ $dr->name }}</h3>
 								<span class="position mb-2">{{ $dr->speciality }}</span>
 								<div class="faded">
-									<p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
+									<p>{{ $dr->description }}</p>
 									<ul class="ftco-social text-center">
 		                <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span class="icon-twitter"></span></a></li>
 		                <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span class="icon-facebook"></span></a></li>
@@ -110,7 +110,7 @@
 							</div>
 						</div>
 					</div> --}}
-					<div class="col-md-6 col-lg-3 ftco-animate">
+					{{-- <div class="col-md-6 col-lg-3 ftco-animate">
 						<div class="staff">
 							<div class="img-wrap d-flex align-items-stretch">
 								<div class="img align-self-stretch" style="background-image: url(images/doc-4.jpg);"></div>
@@ -129,9 +129,9 @@
 	              </div>
 							</div>
 						</div>
-					</div>
+					</div> --}}
 
-					<div class="col-md-6 col-lg-3 ftco-animate">
+					{{-- <div class="col-md-6 col-lg-3 ftco-animate">
 						<div class="staff">
 							<div class="img-wrap d-flex align-items-stretch">
 								<div class="img align-self-stretch" style="background-image: url(images/doc-5.jpg);"></div>
@@ -150,8 +150,9 @@
 	              </div>
 							</div>
 						</div>
-					</div>
-					<div class="col-md-6 col-lg-3 ftco-animate">
+					</div> --}}
+
+					{{-- <div class="col-md-6 col-lg-3 ftco-animate">
 						<div class="staff">
 							<div class="img-wrap d-flex align-items-stretch">
 								<div class="img align-self-stretch" style="background-image: url(images/doc-6.jpg);"></div>
@@ -170,8 +171,9 @@
 	              </div>
 							</div>
 						</div>
-					</div>
-					<div class="col-md-6 col-lg-3 ftco-animate">
+					</div> --}}
+
+					{{-- <div class="col-md-6 col-lg-3 ftco-animate">
 						<div class="staff">
 							<div class="img-wrap d-flex align-items-stretch">
 								<div class="img align-self-stretch" style="background-image: url(images/doc-7.jpg);"></div>
@@ -190,8 +192,10 @@
 	              </div>
 							</div>
 						</div>
-					</div>
-					<div class="col-md-6 col-lg-3 ftco-animate">
+					</div> --}}
+
+
+					{{-- <div class="col-md-6 col-lg-3 ftco-animate">
 						<div class="staff">
 							<div class="img-wrap d-flex align-items-stretch">
 								<div class="img align-self-stretch" style="background-image: url(images/doc-8.jpg);"></div>
@@ -210,7 +214,8 @@
 	              </div>
 							</div>
 						</div>
-					</div>
+					</div>--}}
+
 				</div>
 			</div>
 		</section>

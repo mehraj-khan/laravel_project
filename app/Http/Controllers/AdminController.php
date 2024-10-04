@@ -12,7 +12,16 @@ class AdminController extends Controller
 {
     //
     public function add_view() {
-        return view('admin.add_doctor');
+        if(Auth::id()){
+            if(Auth::user()->usertype==1){
+                return view('admin.add_doctor');
+            }else{
+                return redirect()->back();
+            }
+        }else{
+            return redirect('login');
+        }
+
     }
     public function logout(Request $request)
     {
@@ -34,6 +43,7 @@ class AdminController extends Controller
             'email'=>'required',
             'phone'=>'required',
             'speciality'=>'required',
+            'description'=>'required',
             'password'=>'required',
             'Image'=>'required|mimes:png,jpg,jpeg,gif|max:10000'
         ]);
@@ -46,14 +56,25 @@ class AdminController extends Controller
         $doctor->email = $request->email;
         $doctor->phone = $request->phone;
         $doctor->speciality = $request->speciality;
+        $doctor->description = $request->description;
         $doctor->password = $request->password;
         $doctor->save();
         return back()->withSuccess('Form Submitted !!!!!');
     }
 
     public function show_appointment(){
-        $data = Appoinment::all();
-        return view('admin.show_appointment',['show_appointment'=>$data]);
+        if(Auth::id()){
+            if(Auth::user()->usertype==1){
+                $data = Appoinment::all();
+                return view('admin.show_appointment',['show_appointment'=>$data]);
+            }else{
+                return redirect()->back();
+            }
+        }else{
+            return redirect('login');
+        }
+
+
     }
 
     public function all_doctor(){
@@ -70,6 +91,16 @@ class AdminController extends Controller
         return view('admin.update_doctor',['update'=>$data]);
     }
     public function edit_doctor(Request $request, $id){
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|max:255',
+            'phone' => 'required|string|max:255',
+            'speciality' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
+        ]);
+
+
         $doctor = Doctor::find($id);
         if (!$doctor) {
             // Handle the case where the doctor is not found
@@ -79,14 +110,15 @@ class AdminController extends Controller
         $doctor->email=$request->email;
         $doctor->phone=$request->phone;
         $doctor->speciality=$request->speciality;
+        $doctor->description=$request->description;
         if ($request->hasFile('Image')) {
             $imageName = time() . '.' . $request->Image->extension();
             $request->Image->move(public_path('doctor_image'), $imageName);
             $doctor->Image = $imageName;  // Update the image property
         }
         $doctor->save();
-        return redirect('')->back();
-        
+        return redirect()->back();
+
 }
 
 }

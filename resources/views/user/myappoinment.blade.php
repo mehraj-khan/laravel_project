@@ -48,7 +48,6 @@
     <tbody>
         @foreach ($appoint as $appoint)
 
-
       <tr>
         {{-- <th scope="row">1</th> --}}
         <td>{{ $appoint->name }}</td>

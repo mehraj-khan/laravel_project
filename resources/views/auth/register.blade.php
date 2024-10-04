@@ -29,19 +29,19 @@
             </div>
             <div class="mt-4">
                 <x-label for="phone" value="{{ __('phone') }}" />
-                <x-input id="phone" class="block mt-1 w-full" type="text" name="phone" required autocomplete="tel" />
+                <x-input id="phone" class="block mt-1 w-full" :value="old('phone')" type="text" name="phone" required autocomplete="tel" />
             </div>
             <div class="mt-4">
                 <x-label for="address" value="{{ __('address') }}" />
-                <x-input id="address" class="block mt-1 w-full" type="text" name="address" required autocomplete="new-address" />
+                <x-input id="address" class="block mt-1 w-full" :value="old('address')" type="text" name="address" required autocomplete="new-address" />
             </div>
             <div class="mt-4">
                 <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
+                <x-input id="password" class="block mt-1 w-full" :value="old('password')" type="password" name="password" required autocomplete="new-password" />
             </div>
 
             <div class="mt-4">
-                <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
+                <x-label for="password_confirmation" :value="old('password_confirmation')" />
                 <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
             </div>
 

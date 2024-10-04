@@ -76,6 +76,14 @@ input, textarea {
                     @endif
                   </div>
                   <div class="form-group">
+                    <label for="Speciality">Description</label>
+                    {{-- <input class="form-control border" placeholder="Eter description" value="{{old('description') }}" id="description" type="text " name="description" > --}}
+                    <textarea name="description" id="description" value="{{old('description') }}" cols="50" rows="4"></textarea>
+                    @if ($errors->has('description'))
+                    <span class="text-danger">{{ $errors->first('description') }}</span>
+                    @endif
+                  </div>
+                  <div class="form-group">
                     <label for="password">password</label>
                     <input class="form-control border" placeholder="Eter your password" value="{{old('password') }}" id="password" type="text" name="password" >
                     @if ($errors->has('password'))

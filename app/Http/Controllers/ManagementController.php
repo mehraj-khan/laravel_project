@@ -73,14 +73,20 @@ use Illuminate\Http\Request;
             $appoinment->select_doctor = $request->select_doctor;
             $appoinment->gender = $request->gender;
             $appoinment->date = $request->date;
+            if(Auth::id()){
+            $appoinment->user_id =Auth::user()->id;
+            }
             $appoinment->save();
             return redirect()->back()->withSuccess('Appointment  Request Successful. We will contact with you soon !!!!!');
         }
         public function myappoinment(){
             if(Auth::id()){
-                $userid = Auth::user()->id;
-                $appoinment = appoinment::where('id',$userid)->get();
+                if(Auth::user()->usertype==0){
+                    $userid = Auth::user()->id;
+                $appoinment = appoinment::where('user_id',$userid)->get();
                 return view('user.myappoinment',['appoint'=>$appoinment]);
+                }
+
             }else
             {
                 return redirect()->back();

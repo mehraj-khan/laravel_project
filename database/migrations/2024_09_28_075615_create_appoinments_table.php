@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('select_doctor')->require;
             $table->string('gender')->require;
             $table->string('date')->require;
+            $table->string('user_id')->nullable();
             $table->timestamps();
         });
     }
