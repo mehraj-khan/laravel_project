@@ -69,6 +69,7 @@
             <li class="nav-item "><a href="{{ route('index') }}" class="nav-link pl-0">Home</a></li>
             <li class="nav-item "><a href="{{ route('about') }}" class="nav-link">About</a></li>
             <li class="nav-item"><a href="{{ route('doctor') }}" class="nav-link">Doctor</a></li>
+            <li class="nav-item"><a href="{{ route('doctors.search') }}" class="nav-link">Find Doctor</a></li>
             <li class="nav-item"><a href="{{ route('treatments') }}" class="nav-link">Treatments</a></li>
             <li class="nav-item"><a href="{{ route('blog') }}" class="nav-link">Blog</a></li>
           <li class="nav-item"><a href="{{ route('contact') }}" class="nav-link">Contact</a></li>

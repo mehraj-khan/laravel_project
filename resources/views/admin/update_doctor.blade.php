@@ -85,6 +85,22 @@ input, textarea {
                     <br>
                 </div>
                 <div class="form-group">
+                    <label for="name">location</label>
+                    <input type="text" class="form-control" value="{{ old('location', $update->location) }}" id="location" type="text"   name="location" placeholder="location">
+                    @if ($errors->has('location'))
+                    <span class="text-danger">{{ $errors->first('location') }}</span>
+                    @endif
+                    <br>
+                </div>
+                <!-- <div class="form-group">
+                    <label for="name">availability_days</label>
+                    <input type="text" class="form-control" value="{{ old('locavailability_daysation', $update->availability_days) }}" id="availability_days" type="text"   name="availability_days" placeholder="availability_days">
+                    @if ($errors->has('availability_days'))
+                    <span class="text-danger">{{ $errors->first('availability_days') }}</span>
+                    @endif
+                    <br>
+                </div> -->
+                <div class="form-group">
                     {{-- <input type="text" class="form-control" value="{{ old('description', $update->description) }}" id="description" type="text"   name="description" placeholder="description"> --}}
                     <label for="name">Description</label>
                     <textarea name="description" id="description"  cols="30" rows="4" placeholder="description">{{ old('description', $update->description) }}</textarea>

@@ -16,8 +16,9 @@ return new class extends Migration
             $table->string('name')->require;
             $table->string('email')->require;
             $table->string('phone')->require;
+            // $table->time('start_time');               // Start time of availability
+            // $table->time('end_time');       
             $table->string('speciality')->require;
-            $table->string('password')->require;
             $table->string('Image')->nullable();
             $table->timestamps();
         });
@@ -28,6 +29,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('doctors');
-    }
+        Schema::dropIfExists('doctors'); 
+    } 
+    
 };

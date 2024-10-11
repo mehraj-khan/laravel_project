@@ -69,6 +69,77 @@ input, textarea {
                     <br>
                   </div>
                   <div class="form-group">
+                    <label for="start_time">start_time</label>
+                    <input class="form-control border" placeholder="Eter your start_time" value="{{old('start_time') }}" id="start_time" type="time" name="start_time" >
+                    @if ($errors->has('start_time'))
+                    <span class="text-danger">{{ $errors->first('start_time') }}</span>
+                    @endif
+                  </div>
+                  <div class="form-group">
+                    <label for="end_time">end_time</label>
+                    <input class="form-control border" placeholder="Eter your end_time" value="{{old('end_time') }}" id="end_time" type="time" name="end_time" >
+                    @if ($errors->has('end_time'))
+                    <span class="text-danger">{{ $errors->first('end_time') }}</span>
+                    @endif
+                  </div>
+                  <!-- <div class="form-group">
+
+                    <div class="form-control border">
+                        <label for="availability_days">Select Availability Days:</label><br>
+
+                        <label>
+                            <input type="checkbox" name="availability_days[]" value="Monday"
+                            {{ in_array('Monday', old('availability_days', [])) ? 'checked' : '' }}> Monday
+                        </label><br>
+
+                        <label>
+                            <input type="checkbox" name="availability_days[]" value="Tuesday"
+                            {{ in_array('Tuesday', old('availability_days', [])) ? 'checked' : '' }}> Tuesday
+                        </label><br>
+
+                        <label>
+                            <input type="checkbox" name="availability_days[]" value="Wednesday"
+                            {{ in_array('Wednesday', old('availability_days', [])) ? 'checked' : '' }}> Wednesday
+                        </label><br>
+
+                        <label>
+                            <input type="checkbox" name="availability_days[]" value="Thursday"
+                            {{ in_array('Thursday', old('availability_days', [])) ? 'checked' : '' }}> Thursday
+                        </label><br>
+
+                        <label>
+                            <input type="checkbox" name="availability_days[]" value="Friday"
+                            {{ in_array('Friday', old('availability_days', [])) ? 'checked' : '' }}> Friday
+                        </label><br>
+
+                        <label>
+                            <input type="checkbox" name="availability_days[]" value="Saturday"
+                            {{ in_array('Saturday', old('availability_days', [])) ? 'checked' : '' }}> Saturday
+                        </label><br>
+
+                        <label>
+                            <input type="checkbox" name="availability_days[]" value="Sunday"
+                            {{ in_array('Sunday', old('availability_days', [])) ? 'checked' : '' }}> Sunday
+                        </label><br>
+                    </div>
+
+
+                    
+
+                    @if ($errors->has('availability_days'))
+                    <span class="text-danger">{{ $errors->first('availability_days') }}</span>
+                    @endif
+                    <br>
+                  </div> -->
+                  <div class="form-group">
+                    <label for="Phone">location</label>
+                    <input class="form-control border" placeholder="Eter your location" value="{{old('location') }}" id="location" type="text" name="location" >
+                    @if ($errors->has('location'))
+                    <span class="text-danger">{{ $errors->first('location') }}</span>
+                    @endif
+                    <br>
+                  </div>
+                  <div class="form-group">
                     <label for="Speciality">Speciality</label>
                     <input class="form-control border" placeholder="Eter your Speciality" value="{{old('speciality') }}" id="Speciality" type="text " name="speciality" >
                     @if ($errors->has('speciality'))
@@ -83,13 +154,7 @@ input, textarea {
                     <span class="text-danger">{{ $errors->first('description') }}</span>
                     @endif
                   </div>
-                  <div class="form-group">
-                    <label for="password">password</label>
-                    <input class="form-control border" placeholder="Eter your password" value="{{old('password') }}" id="password" type="text" name="password" >
-                    @if ($errors->has('password'))
-                    <span class="text-danger">{{ $errors->first('password') }}</span>
-                    @endif
-                  </div>
+                  
                   <div class="form-group">
                     <label for="Image">Image</label>
                     <input class="form-control border" id="Image" type="file" value="{{old('Image') }}" name="Image" >

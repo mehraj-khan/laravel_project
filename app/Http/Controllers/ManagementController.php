@@ -14,25 +14,89 @@ use Illuminate\Http\Request;
     {
     //     //
         public function redirect(){
-        if(Auth::check()){
-            if(Auth::user()->usertype == '0'){
-                return view('user.home');
+
+            // $doctors = Doctor::all();
+            // return view('user.home', ['doctors' => $doctors]);
+            // if (Auth::check()) {  // Check if the user is authenticated
+            //     if (Auth::user()->usertype == 0) {
+            //         // Normal user, load user home view
+            //         $doctors = Doctor::all();
+            //         return view('user.home', ['doctors' => $doctors]);
+            //     } else {
+            //         // Admin user or other types, load admin home view
+            //         return view('admin.home');
+            //     }
+            // } else {
+            //     // If the user is not authenticated, redirect back to previous page
+            //     return redirect()->back();
+            // }
+
+            // if(Auth::id()){
+            //     if(Auth::user()->usertype == '0'){
+            //         $doctors = Doctor::all();
+            //         return view('user.home', ['doctors' => $doctors]);
+            //     }elseif(Auth::user()->usertype == '1'){
+            //         return view('admin.home');
+            //     }
+            //     else{
+            //         return view('admin.home');
+            //     }
+            // }
+           
+
+            if (Auth::id()) {
+                $usertype = Auth::user()->usertype;
+        
+                // Normal user
+                if ($usertype == '0') {
+                    $doctors = Doctor::all();
+                    return view('user.home', ['doctors' => $doctors]);
+                }
+                // Admin user
+                elseif ($usertype == '1') {
+                    return view('admin.home');
+                }
+                // Fallback to admin home for any other usertype
+                else {
+                    return view('admin.home');
+                }
             } else {
-                return view('admin.home');
+                // If user is not authenticated, redirect to the homepage or login page
+                return redirect()->route('login')->with('error', 'Please log in first.');
             }
-        } else {
-            return redirect('login');
-        }
+
+        
     }
-        public function index(){
-            if(Auth::id()){
-                return redirect('home');
-            }else{
-            return view('user.home');
-            $do = doctor::all();
-            return view('user.home',['doctor' => $do]);
-            }
+    public function index()
+{
+    if (Auth::id()) {
+        $usertype = Auth::user()->usertype;
+
+        // Normal user
+        if ($usertype == '0') {
+            $doctors = Doctor::all();
+            return view('user.home', ['doctors' => $doctors]);
         }
+        // Admin user
+        elseif ($usertype == 1) {
+            return view('admin.home');
+        } elseif ($usertype == 2) {
+            return view('admin.add_doctor');
+        }
+        // Fallback to admin home for any other usertype
+        else {
+            $doctors = Doctor::all();
+            return view('user.home', ['doctors' => $doctors]);
+        }
+    } else {
+        // If user is not authenticated, redirect to the homepage or login page
+             $doctors = Doctor::all();
+            return view('user.home', ['doctors' => $doctors]);
+
+    }
+    
+} 
+
         public function about(){
             return view('user.about');
         }
@@ -97,4 +161,28 @@ use Illuminate\Http\Request;
             $data->delete();
             return redirect()->back();
         }
+
+
+        public function search(Request $request)
+{
+    $query = Doctor::query();
+
+   
+     if ($request->has('location') || $request->has('speciality')) {
+        // Get search inputs
+        $location = $request->input('location');
+        $speciality = $request->input('speciality');
+
+        // Query doctors based on location and specialization
+        $doctors = Doctor::where('location', 'LIKE', "%{$location}%")
+                         ->where('speciality', 'LIKE', "%{$speciality}%")
+                         ->get();
+    } else {
+        // Get all doctors if no search criteria are provided
+        $doctors = Doctor::all();
+    }
+
+    return view('user.find_doctor', compact('doctors'));
+}
+
     }

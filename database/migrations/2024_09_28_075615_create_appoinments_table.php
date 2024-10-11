@@ -13,13 +13,18 @@ return new class extends Migration
     {
         Schema::create('appoinments', function (Blueprint $table) {
             $table->id();
+            // $table->unsignedBigInteger('doctor_id');
             $table->string('name')->require;
             $table->string('phone')->require;
             $table->string('select_doctor')->require;
             $table->string('gender')->require;
             $table->string('date')->require;
             $table->string('user_id')->nullable();
+            $table->enum('status', ['pending', 'confirmed', 'canceled']);
             $table->timestamps();
+
+            // $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade');
+
         });
     }
 

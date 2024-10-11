@@ -22,6 +22,8 @@
                 <th scope="col">email</th>
                 <th scope="col">phone</th>
                 <th scope="col">Speciality</th>
+                <th scope="col">location</th>
+                <th scope="col">availability_days</th>
                 <th scope="col">Description</th>
                 <th scope="col">Image</th>
                 <th scope="col">Delete</th>
@@ -36,6 +38,8 @@
                 <td>{{ $doctor->email }}</td>
                 <td>{{ $doctor->phone }}</td>
                 <td>{{ $doctor->speciality }}</td>
+                <td>{{ $doctor->location }}</td>
+                <!-- <td>{{ $doctor->availability_days }}</td> -->
                 <td>
                     <span title="{{ $doctor->description }}">
                         {{ Str::limit($doctor->description, 30, '...') }}

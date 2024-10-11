@@ -102,7 +102,7 @@
                             @foreach ($doctor as $doc)
                                 <option value="{{ $doc->name }}"{{ old('select_doctor') == $doc->name ? 'selected' : '' }}
                                     class="form-control w-50">
-                                    {{ $doc->name }}---speciality-----{{ $doc->speciality }}</option>
+                                    {{ $doc->name }}---speciality---{{ $doc->speciality }}---days---{{ $doc->availability_days}}</option>
                             @endforeach
                         </select>
                         @if ($errors->has('select_doctor'))

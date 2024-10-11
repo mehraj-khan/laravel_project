@@ -4,30 +4,7 @@
 <!-- Mirrored from technext.github.io/dentista/doctor.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 24 Sep 2024 11:55:06 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
-    <title>Dentista - Free Bootstrap 4 Template by Colorlib</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
-
-    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="css/animate.css">
-
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-
-    <link rel="stylesheet" href="css/aos.css">
-
-    <link rel="stylesheet" href="css/ionicons.min.css">
-
-    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="css/jquery.timepicker.css">
-
-
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/icomoon.css">
-    <link rel="stylesheet" href="css/style.css">
+   @include('user.header')
   </head>
   <body>
   @include('user.navbar')
@@ -58,7 +35,8 @@
 								<h3>{{ $dr->name }}</h3>
 								<span class="position mb-2">{{ $dr->speciality }}</span>
 								<div class="faded">
-									<p>{{ $dr->description }}</p>
+									<p><i class="fa-solid fa-location-dot" style="color: #e00b20;"></i>  {{ $dr->location }}</p>
+									<p>  {{Str::limit($dr->description, 53, '...') }}</p>
 									<ul class="ftco-social text-center">
 		                <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span class="icon-twitter"></span></a></li>
 		                <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span class="icon-facebook"></span></a></li>
@@ -70,7 +48,7 @@
 						</div>
 					</div>
                     @endforeach
-					{{-- <div class="col-md-6 col-lg-3 ftco-animate">
+					<!-- {{-- <div class="col-md-6 col-lg-3 ftco-animate">
 						<div class="staff">
 							<div class="img-wrap d-flex align-items-stretch">
 								<div class="img align-self-stretch" style="background-image: url(images/doc-2.jpg);"></div>
@@ -109,8 +87,8 @@
 	              </div>
 							</div>
 						</div>
-					</div> --}}
-					{{-- <div class="col-md-6 col-lg-3 ftco-animate">
+					</div> --}} -->
+					<!-- {{-- <div class="col-md-6 col-lg-3 ftco-animate">
 						<div class="staff">
 							<div class="img-wrap d-flex align-items-stretch">
 								<div class="img align-self-stretch" style="background-image: url(images/doc-4.jpg);"></div>
@@ -214,7 +192,7 @@
 	              </div>
 							</div>
 						</div>
-					</div>--}}
+					</div>--}} -->
 
 				</div>
 			</div>
