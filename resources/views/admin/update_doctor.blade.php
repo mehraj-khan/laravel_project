@@ -117,7 +117,7 @@ input, textarea {
                     @endif
                     </div>
                     <br>
-                    <input type="submit" value="Update" class="btn-btn-primary">
+                    <input type="submit"  value="Update" class="btn btn-primary">
                 </form>
             {{-- </div> --}}
             </div>

@@ -19,8 +19,9 @@ return new class extends Migration
             $table->time('end_time')->nullable();
             $table->string('location')->nullable();
             $table->timestamps();
-
-            $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade');
+            
+            $table->foreignId('doctor_id')->constrained('doctors'); // Makes sure the doctor_id references doctors table
+            // $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade');
         });
     }
 

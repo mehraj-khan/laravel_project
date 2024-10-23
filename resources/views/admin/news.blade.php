@@ -150,68 +150,42 @@
           </div>
           @endif
 
-          <h1>Doctor Form</h1>
-          <p>Fill this form completely</p>
+          <h1>Latest News Form</h1>
+          <p>Fill this form completely </p>
 
-          <form action="{{ url('upload_doctor') }}" method="post" enctype="multipart/form-data">
+          <form action="{{ url('latest/news') }}" method="post" enctype="multipart/form-data">
             @csrf
 
             <div class="form-group">
-              <label for="name">Full Name</label>
-              <input class="form-control" value="{{ old('name') }}" placeholder="Enter your full name" id="name" type="text" name="name">
-              @if ($errors->has('name'))
-              <span class="text-danger">{{ $errors->first('name') }}</span>
+              <label for="title">Title</label>
+              <input class="form-control" value="{{ old('title') }}" placeholder="Enter title" id="title" type="text" name="title">
+              @if ($errors->has('title'))
+              <span class="text-danger">{{ $errors->first('title') }}</span>
               @endif
             </div>
 
             <div class="form-group">
-              <label for="email">Email</label>
-              <input class="form-control" value="{{ old('email') }}" placeholder="Enter your email" id="email" type="email" name="email">
-              @if ($errors->has('email'))
-              <span class="text-danger">{{ $errors->first('email') }}</span>
+              <label for="content">content</label>
+              <input class="form-control" value="{{ old('content') }}" placeholder="Enter content" id="content" type="text" name="content">
+              @if ($errors->has('content'))
+              <span class="text-danger">{{ $errors->first('content') }}</span>
               @endif
             </div>
 
             <div class="form-group">
-              <label for="phone">Phone</label>
-              <input class="form-control" placeholder="Enter your phone number" value="{{ old('phone') }}" id="phone" type="text" name="phone">
-              @if ($errors->has('phone'))
-              <span class="text-danger">{{ $errors->first('phone') }}</span>
+              <label for="date">Date</label>
+              <input class="form-control" placeholder="Enter date" value="{{ old('date') }}" id="date" type="date" name="date">
+              @if ($errors->has('date'))
+              <span class="text-danger">{{ $errors->first('date') }}</span>
               @endif
-            </div>
-
-            <div class="form-group">
-              <label for="location">Location</label>
-              <input class="form-control" placeholder="Enter your location" value="{{ old('location') }}" id="location" type="text" name="location">
-              @if ($errors->has('location'))
-              <span class="text-danger">{{ $errors->first('location') }}</span>
-              @endif
-            </div>
-
-            <div class="form-group">
-              <label for="speciality">Speciality</label>
-              <input class="form-control" placeholder="Enter your speciality" value="{{ old('speciality') }}" id="speciality" type="text" name="speciality">
-              @if ($errors->has('speciality'))
-              <span class="text-danger">{{ $errors->first('speciality') }}</span>
-              @endif
-            </div>
-
-            <div class="form-group">
-              <label for="description">Description</label>
-              <textarea class="form-control" placeholder="Enter description" id="description" name="description">{{ old('description') }}</textarea>
-              @if ($errors->has('description'))
-              <span class="text-danger">{{ $errors->first('description') }}</span>
-              @endif
-            </div>
-
+            </div>                                 
             <div class="form-group">
               <label for="image">Image</label>
-              <input class="form-control" id="image" type="file" name="Image">
+              <input class="form-control" id="image" type="file" name="image">
               @if ($errors->has('image'))
               <span class="text-danger">{{ $errors->first('image') }}</span>
               @endif
             </div>
-
             <input class="btn btn-primary" class="btn-primary" type="submit" value="Submit">
           </form>
         </div>

@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row no-gutters d-flex align-items-start align-items-center px-3 px-md-0">
             <div class="col-md-4 order-md-2 mb-2 mb-md-0 align-items-center text-center">
-                <a class="navbar-brand" href="{{ route('index') }}">Dentista<span>Dental Clinic</span></a>
+                <a class="navbar-brand" href="{{ route('index') }}">Care<span>Group Clinic</span></a>
             </div>
             <div class="col-md-4 order-md-1 d-flex topper mb-md-0 mb-2 align-items-center text-md-right">
                 <div class="icon d-flex justify-content-center align-items-center order-md-last">
@@ -67,11 +67,12 @@
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav m-auto">
             <li class="nav-item "><a href="{{ route('index') }}" class="nav-link pl-0">Home</a></li>
-            <li class="nav-item "><a href="{{ route('about') }}" class="nav-link">About</a></li>
+            <li class="nav-item "><a href="{{ route('newabouts') }}" class="nav-link">About</a></li>
             <li class="nav-item"><a href="{{ route('doctor') }}" class="nav-link">Doctor</a></li>
             <li class="nav-item"><a href="{{ route('doctors.search') }}" class="nav-link">Find Doctor</a></li>
+            <li class="nav-item"><a href="{{ route('avaibilities') }}" class="nav-link">check Avaibility</a></li>
             <li class="nav-item"><a href="{{ route('treatments') }}" class="nav-link">Treatments</a></li>
-            <li class="nav-item"><a href="{{ route('blog') }}" class="nav-link">Blog</a></li>
+            <li class="nav-item"><a href="{{ route('blog') }}" class="nav-link">News</a></li>
           <li class="nav-item"><a href="{{ route('contact') }}" class="nav-link">Contact</a></li>
           @if (Route::has('login'))
                 @auth

@@ -12,7 +12,7 @@ class Doctor extends Model
         'name',
         'email',
         'phone',
-        'speciality',
+        'speciality_id',
         'location', // Add location here
         // 'availability_days', // Add availability_days here
         'description',
@@ -21,9 +21,20 @@ class Doctor extends Model
     ];
     // protected $fillable = ['name', 'speciality', 'location'];
 
-    public function Avaibility()
-    {
-        return $this->hasMany(Avaibility::class);
-    }
+//     public function availabilities()
+// {
+//     return $this->hasMany(Availability::class);
+// }   
+public function availabilities()
+{
+    return $this->hasMany(Avaibility::class, 'doctor_id');
+}
+
    
+
+    // public function availabilities()
+    // {
+    //     return $this->hasMany(Availability::class); // If a doctor has multiple availability records
+    // }
+
 }

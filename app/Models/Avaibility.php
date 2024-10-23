@@ -17,9 +17,12 @@ class Avaibility extends Model
         'location',
     ];
 
+    // public function doctor()
+    // {
+    //     return $this->belongsTo(Doctor::class);
+    // }
     public function doctor()
-    {
-        return $this->belongsTo(Doctor::class);
-    }
-
+{
+    return $this->belongsTo(Doctor::class, 'doctor_id'); // Ensure correct foreign key is being used
+}
 }

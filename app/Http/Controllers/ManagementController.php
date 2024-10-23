@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Doctor;
+use App\Models\Avaibility;
 use App\Models\Appoinment;
+use App\Models\Blog;
 
 // use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
@@ -75,7 +77,8 @@ use Illuminate\Http\Request;
         // Normal user
         if ($usertype == '0') {
             $doctors = Doctor::all();
-            return view('user.home', ['doctors' => $doctors]);
+            $data = Blog::all(); //['doctors' => $doctors]
+            return view('user.home', compact('doctors','data'));
         }
         // Admin user
         elseif ($usertype == 1) {
@@ -86,40 +89,170 @@ use Illuminate\Http\Request;
         // Fallback to admin home for any other usertype
         else {
             $doctors = Doctor::all();
-            return view('user.home', ['doctors' => $doctors]);
+            $data = Blog::all();
+           return view('user.home', compact('doctors','data'));
         }
     } else {
         // If user is not authenticated, redirect to the homepage or login page
              $doctors = Doctor::all();
-            return view('user.home', ['doctors' => $doctors]);
+             $data = Blog::all();
+            return view('user.home', compact('doctors','data'));
 
     }
     
 } 
 
-        public function about(){
-            return view('user.about');
+public function newabouts() {
+    // Check if user is authenticated
+    if (Auth::id()) {
+        $usertype = Auth::user()->usertype;
+
+        if ($usertype == '0') {
+            return view('user.about');  // Normal user
+        } elseif ($usertype == 1) {
+            return view('admin.home');  // Admin
+        } elseif ($usertype == 2) {
+            return view('admin.add_doctor');  // Doctor
         }
+    } else {
+        // If user is not logged in, still return the user.about page
+        return view('user.about');
+    }
+}
         public function doctor(){
             // return view('user.doctor');
-            $doctor = doctor::all();
-            return view('user.doctor',['doctor'=>$doctor]);
+            if (Auth::id()) {
+                $usertype = Auth::user()->usertype;
+        
+                // Normal user
+                if ($usertype == '0') {
+                    $doctor = doctor::all();
+                    return view('user.doctor',['doctor'=>$doctor]);
+                }elseif ($usertype == 1) {
+                    return view('admin.home');
+                } elseif ($usertype == 2) {
+                    return view('admin.add_doctor');
+                }
+            }else {
+                // If user is not logged in, still return the user.about page
+                $doctor = doctor::all();
+                return view('user.doctor',['doctor'=>$doctor]);
+            }
+
+
+
         }
 
         public function treatments(){
-            return view('user.treatments');
+            if (Auth::id()) {
+                $usertype = Auth::user()->usertype;
+        
+                // Normal user
+                if ($usertype == '0') {
+                    return view('user.treatments');
+                }elseif ($usertype == 1) {
+                    return view('admin.home');
+                } elseif ($usertype == 2) {
+                    return view('admin.add_doctor');
+                }
+            }else {
+                // If user is not logged in, still return the user.about page
+                return view('user.treatments');
+            }
+
+
         }
         public function blog(){
-            return view('user.blog');
+            
+            if (Auth::id()) {
+                $usertype = Auth::user()->usertype;
+        
+                // Normal user
+                if ($usertype == '0') {
+                    $data = Blog::all();
+                    return view('user.blog' , compact('data'));
+                }elseif ($usertype == 1) {
+                    return view('admin.home');
+                } elseif ($usertype == 2) {
+                    return view('admin.add_doctor');
+                }
+            }else {
+                // If user is not logged in, still return the user.about page
+                $data = Blog::all();
+                return view('user.blog', compact('data'));
+            }
         }
-        public function contact(){
-            return view('user.contact');
+        public function contact(){         
+            if (Auth::id()) {
+                $usertype = Auth::user()->usertype;        
+                // Normal user
+                if ($usertype == '0') {
+                    return view('user.contact');
+                }elseif ($usertype == 1) {
+                    return view('admin.home');
+                } elseif ($usertype == 2) {
+                    return view('admin.add_doctor');
+                }
+            }else {
+                // If user is not logged in, still return the user.about page
+                return view('user.contact');
+            }
+            
         }
-        public function appoinment(Request $request){
-            $doctor = doctor::all();
-            if(Auth::id()){
-            return view('user.appoinment',['doctor'=>$doctor]);
-            }else{
+        // public function appoinment(Request $request){
+  
+        //     if (Auth::id()) {
+        //         $usertype = Auth::user()->usertype;        
+        //         // Normal user
+        //         if ($usertype == '0') {
+        //             $doctor = doctor::all();
+        //     if(Auth::id()){
+        //     return view('user.appoinment',['doctor'=>$doctor]);
+        //     }else{
+        //         return redirect('login');
+        //     }
+        //         }elseif ($usertype == 1) {
+        //             return view('admin.home');
+        //         } elseif ($usertype == 2) {
+        //             return view('admin.add_doctor');
+        //         }
+        //     }else {
+        //         // If user is not logged in, still return the user.about page
+        //         $doctor = doctor::all();
+        //         return view('user.appoinment',['doctor'=>$doctor]);
+        //     }
+
+        //     // $doctor = doctor::all();
+        //     // if(Auth::id()){
+        //     // return view('user.appoinment',['doctor'=>$doctor]);
+        //     // }else{
+        //     //     return redirect('login');
+        //     // }
+        // }
+        public function appoinment(Request $request) {
+            // Check if the user is authenticated
+            if (Auth::check()) {
+                // Get the logged-in user's usertype
+                $usertype = Auth::user()->usertype;
+        
+                // Check if the user is a normal user (usertype == 0)
+                if ($usertype == '0') {
+                    // Fetch all doctors
+                    $doctor = doctor::all();
+                    // Return the appointment view with the list of doctors
+                    return view('user.appoinment', ['doctor' => $doctor]);
+                } elseif ($usertype == '1') {
+                    // If the user is an admin, redirect to the admin home page
+                    return view('admin.home');
+                } elseif ($usertype == '2') {
+                    // If the user is a doctor/admin, redirect to the add doctor page
+                    return view('admin.add_doctor');
+                } else {
+                    // Default fallback if the usertype is unexpected
+                    return redirect('login');
+                }
+            } else {
+                // If the user is not authenticated, redirect them to the login page
                 return redirect('login');
             }
         }
@@ -163,26 +296,71 @@ use Illuminate\Http\Request;
         }
 
 
-        public function search(Request $request)
+    public function search(Request $request)
 {
+    // $request->validate([
+    //     'location' => 'required|string',
+    //     'speciality' => 'required|string',
+    //     // ... other validation rules
+    // ]);
+    
+    // Get all unique locations for the dropdown
+    $allLocations = Doctor::select('location')->distinct()->pluck('location');
+    $allSpecialities = Doctor::select('speciality')->distinct()->pluck('speciality');
+    // Initialize a query for doctors
     $query = Doctor::query();
 
-   
-     if ($request->has('location') || $request->has('speciality')) {
-        // Get search inputs
-        $location = $request->input('location');
-        $speciality = $request->input('speciality');
+    // Get search inputs
+    $location = $request->input('location');
+    $speciality = $request->input('speciality');
 
-        // Query doctors based on location and specialization
-        $doctors = Doctor::where('location', 'LIKE', "%{$location}%")
-                         ->where('speciality', 'LIKE', "%{$speciality}%")
-                         ->get();
-    } else {
-        // Get all doctors if no search criteria are provided
-        $doctors = Doctor::all();
+    // Apply filters if they are provided
+    if (!empty($location)) {
+        $query->where('location', 'LIKE', "%{$location}%");
     }
 
-    return view('user.find_doctor', compact('doctors'));
+    if (!empty($speciality)) {
+        $query->where('speciality', 'LIKE', "%{$speciality}%");
+    }
+
+    // Execute the query and get the result
+    $doctors = $query->get();
+
+    // Return the view with doctors and all locations for dropdown
+    return view('user.find_doctor', compact('doctors', 'allLocations', 'allSpecialities'));
 }
+
+public function getSchedule($id)
+{
+    // Assuming you have a 'schedules' relationship on the Doctor model
+    $doctor = Doctor::find($id);
+    if ($doctor) {
+        // Assuming 'Avaibility' returns the doctor's schedule
+        $schedule = $doctor->Avaibility;
+        return response()->json($schedule);  // Ensure you're returning a valid JSON response
+    }
+
+    return response()->json([]);
+}
+
+
+// public function avaibilities(){
+//     $availabilities = Avaibility::with('doctor')->get();
+
+//     // Fetch doctors separately if you want to use them directly
+//     $doctors = Doctor::all(); 
+
+//     // Return the view   with the availabilities and doctors data
+//     return view('user.avaibilities', compact('availabilities', 'doctors'));
+
+// }
+public function avaibilities(){
+    $availabilities = Avaibility::with('doctor')->get();
+    $doctors = Doctor::all(); 
+
+    // Return the view with the availabilities and doctors data
+    return view('user.avaibilities', compact('availabilities', 'doctors'));
+}
+
 
     }

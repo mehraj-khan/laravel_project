@@ -22,30 +22,54 @@
 
 </head>
 <style>
-    body {
-        background: rgb(244, 244, 247);
-        background: linear-gradient(90deg, rgb(99, 98, 104) 0%, rgba(9, 113, 121, 1) 35%, rgb(130, 149, 153) 100%);
-    }
+   body {
+    background: linear-gradient(135deg, rgba(240, 242, 245, 1) 0%, rgba(200, 220, 240, 1) 50%, rgba(150, 195, 235, 1) 100%);
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+.form-box {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 40px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
 
-    .form-box {
-        max-width: 800px;
-        margin: auto;
-        padding: 50px;
-        background: rgb(104, 103, 128);
-        background: linear-gradient(90deg, rgb(199, 197, 237) 0%, rgb(198, 222, 224) 35%, rgb(186, 215, 218) 54%, rgb(175, 214, 220) 59%, rgb(156, 227, 241) 100%);
-        border: 10px solid #f2f2f2;
-    }
+h1,
+p {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
 
-    h1,
-    p {
-        text-align: center;
-    }
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
 
-    input,
-    textarea {
-        width: 100%;
-    }
-    .input-group-text {
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.input-group-text {
     background-color: #fff;
     border: 1px solid #ced4da;
     cursor: pointer;
@@ -58,6 +82,47 @@
 .input-group .input-group-append .input-group-text {
     border-left: 0;
 }
+
+.btn-primary {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.alert-success {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-control::placeholder {
+    font-size: 14px;
+    color: #888;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .form-box {
+        padding: 30px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .btn-primary {
+        font-size: 16px;
+    }
+}
+
 </style>
 
 <body>
@@ -102,7 +167,7 @@
                             @foreach ($doctor as $doc)
                                 <option value="{{ $doc->name }}"{{ old('select_doctor') == $doc->name ? 'selected' : '' }}
                                     class="form-control w-50">
-                                    {{ $doc->name }}---speciality---{{ $doc->speciality }}---days---{{ $doc->availability_days}}</option>
+                                    {{ $doc->name }}---speciality---{{ $doc->speciality }}--- ---{{ $doc->availability_days}}</option>
                             @endforeach
                         </select>
                         @if ($errors->has('select_doctor'))

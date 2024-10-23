@@ -2,52 +2,50 @@
 <html lang="en">
 
 <head>
-@include('user.header')
+@include('user.css')
+<!-- <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet"> -->
+<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+
+
 </head>
 <body>
 
 @include('user.navbar')
 
-<!-- <div class="container" style="text-align: center; margin-top: 20px;">
-    <div class="row justify-content-center">
-    
-    <form action="{{ url('/doctors/search') }}" method="GET">
-        @csrf 
-        <div>
-            <label for="location">Location:</label>
-            <input type="text" name="location" id="location" placeholder="Enter location" required>
-        </div>
 
-        <div>
-            <label for="speciality">Specialization:</label>
-            <input type="text" name="speciality" id="speciality" placeholder="Enter specialization" required>
-        </div>
-
-        <button type="submit">Search</button>
-    </form>
-
-    <!-- Display Results 
-    
-    </div>
-</div> -->
 
 <div class="container mt-4">
     <div class="row justify-content-center">
         <form action="{{ url('/doctors/search') }}" method="GET" class="row g-3 align-items-center">
             @csrf 
-            
-            <div class="col-md-4">
-                <label for="location" class="form-label">Location:</label>
-                <input type="text" name="location" id="location" class="form-control" placeholder="Enter location" required>
-            </div>
+            <div class="row form-section"">
+            <div class="col-12 col-md-6 mb-3">
+    <select class="form-select custom-select" id="location" name="location">
+        <option value="" disabled {{ old('location') ? '' : 'selected' }}>Select location</option>
+        @foreach($allLocations as $location)
+            <option value="{{ $location }}" {{ old('location') == $location ? 'selected' : '' }}>
+                {{ $location }}
+            </option>
+        @endforeach
+    </select>
+</div>
 
-            <div class="col-md-4">
-                <label for="speciality" class="form-label">Specialization:</label>
-                <input type="text" name="speciality" id="speciality" class="form-control" placeholder="Enter specialization" required>
-            </div>
+<div class="col-12 col-md-6 mb-3">
+    <select class="form-select custom-select w-200" id="speciality" name="speciality">
+        <option value="" disabled {{ old('speciality') ? '' : 'selected' }}>Select speciality</option>
+        @foreach($allSpecialities as $speciality)
+            <option value="{{ $speciality }}" {{ old('speciality') == $speciality ? 'selected' : '' }}>
+                {{ $speciality }}
+            </option>
+        @endforeach
+    </select>
+</div>
 
-            <div class="col-md-2 mt-3 d-flex align-items-end">
-                <button type="submit" class="btn btn-primary w-100">Search</button>
+</div>
+
+            <!-- speciality -->
+            <div class="col-md-2 mb-3 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary w-200">Search</button>
             </div>
         </form>
     </div>
@@ -73,12 +71,14 @@
 								<div class="faded">
 									<p><i class="fa-solid fa-location-dot" style="color: #e00b20;"></i>  {{ $doctor->location }}</p>
 									<ul class="ftco-social text-center">
+                                        
 		                <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span class="icon-twitter"></span></a></li>
 		                <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span class="icon-facebook"></span></a></li>
 		                <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span class="icon-google-plus"></span></a></li>
 		                <li class="ftco-animate"><a href="#" class="d-flex align-items-center justify-content-center"><span class="icon-instagram"></span></a></li>
 		              </ul>
 	              </div>
+                 
 							</div>
 						</div>
 					</div>
@@ -93,7 +93,16 @@
 			</div>
 		</section>
 
+
+
+
+
+        @include('user.footer')
+
 @include('user.js')
+<!-- <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script> -->
+
 
 </body>
 </html>

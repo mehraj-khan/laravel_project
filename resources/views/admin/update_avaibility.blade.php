@@ -107,6 +107,7 @@
         height: 80px;
         width: 50px;
       }
+
     }
   </style>
 </head>
@@ -124,39 +125,46 @@
           <thead>
             <tr>
               <th scope="col">Name</th>
-              <th scope="col">Email</th>
-              <th scope="col">Phone</th>
-              <th scope="col">Speciality</th>
-              <th scope="col">Location</th>
-              <th scope="col">Description</th>
-              <th scope="col">Image</th>
-              <th scope="col">Delete</th>
+              <th scope="col">Availability Start Time</th>
+              <th scope="col">Availability End Time</th>
+              <th scope="col">Availability Days</th>
+              <th scope="col">Availability Location</th>
               <th scope="col">Update</th>
+              <th scope="col">Delete</th>
             </tr>
           </thead>
           <tbody>
-            @foreach ($all_doctor as $doctor)
-            <tr>
-              <td>{{ $doctor->name }}</td>
-              <td>{{ $doctor->email }}</td>
-              <td>{{ $doctor->phone }}</td>
-              <td>{{ $doctor->speciality }}</td>
-              <td>{{ $doctor->location }}</td>
-              <td>
-                <span title="{{ $doctor->description }}">
-                  {{ Str::limit($doctor->description, 30, '...') }}
-                </span>
+            @foreach ($doctors as $doctor)
+              @if($doctor->availabilities->isNotEmpty())
+                @foreach ($doctor->availabilities as $availability)
+                  <tr>
+                    <td>{{ $doctor->name }}</td>
+                    <td>{{ $availability->start_time }}</td>
+                    <td>{{ $availability->end_time }}</td>
+                    <td>{{ $availability->days }}</td>
+                    <td>
+                      <!-- Display location in the first line -->
+                      <div>{{ $availability->location }}</div>
+                      <!-- New line for additional data (optional) -->
+                      <div>{{ $availability->some_other_field }}</div>
+                    </td>
+                    <td>
+                <a href="{{ url('delete_avaibility', $availability->id ) }}" onclick="return confirm('Are you sure you want to delete this doctor?')" class="btn btn-sm btn-danger">Delete</a>
               </td>
               <td>
-                <img height="100px" width="60px" src="doctor_image/{{ $doctor->Image }}" alt="Doctor Image">
+                <a href="{{ url('edit_avaibility', $availability->id ) }}" class="btn btn-sm btn-warning">Update</a>
               </td>
-              <td>
-                <a href="{{ url('delete_doctor', $doctor->id ) }}" onclick="return confirm('Are you sure you want to delete this doctor?')" class="btn btn-sm btn-danger">Delete</a>
-              </td>
-              <td>
-                <a href="{{ url('update_doctor', $doctor->id ) }}" class="btn btn-sm btn-warning">Update</a>
-              </td>
-            </tr>
+                  </tr>
+                @endforeach
+              @else
+                <!-- <tr>
+                  <td>{{ $doctor->name }}</td>
+                  <td colspan="5">No availability data</td> <!-- Changed colspan to 5
+                  <td>
+                    <a href="{{ url('delete_doctor', $doctor->id) }}" onclick="return confirm('Are you sure you want to delete this doctor?')" class="btn btn-sm btn-danger">Delete</a>
+                  </td>
+                </tr> -->
+              @endif
             @endforeach
           </tbody>
         </table>
