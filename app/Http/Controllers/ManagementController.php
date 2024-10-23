@@ -52,7 +52,8 @@ use Illuminate\Http\Request;
                 // Normal user
                 if ($usertype == '0') {
                     $doctors = Doctor::all();
-                    return view('user.home', ['doctors' => $doctors]);
+                    $data = Blog::all();
+                    return view('user.home',compact('doctors','data'));
                 }
                 // Admin user
                 elseif ($usertype == '1') {
