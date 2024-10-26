@@ -41,8 +41,14 @@ Route::get('/avaibility_update',[AdminController::class, 'avaibility_update'])->
 Route::match(['get', 'post'],'/avaibility_store',[AdminController::class, 'avaibility_store']);
 Route::get('speciality/create', [AdminController::class, 'create'])->name('speciality.create');
 Route::post('speciality/store', [AdminController::class, 'store'])->name('speciality.store');
-Route::get('latest/news', [AdminController::class, 'news'])->name('speciality.store');
-Route::post('latest/news', [AdminController::class, 'news_store'])->name('latest/news');
+Route::get('latest/news', [AdminController::class, 'news'])->name('latest.news.get');
+Route::post('latest/news', [AdminController::class, 'news_store'])->name('latest.news.store');
+
+Route::get('show/news', [AdminController::class, 'show_news'])->name('show.news');
+
+Route::get('/delete_news/{id}', [AdminController::class, 'delete_news'])->name('news.delete');
+Route::get('/update_news/{id}', [AdminController::class, 'update_news'])->name('news.update');
+Route::post('/edit_news/{id}', [AdminController::class, 'edit_news'])->name('news.edit');
 
 // Route::get('/doctors', [AdminController::class, 'index']);
 // Route::get('/get-doctors-by-speciality/{specialityId}', [AdminController::class, 'getDoctorsBySpeciality']);

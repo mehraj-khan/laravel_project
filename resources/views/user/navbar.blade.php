@@ -73,7 +73,7 @@
             <li class="nav-item"><a href="{{ route('avaibilities') }}" class="nav-link">check Avaibility</a></li>
             <li class="nav-item"><a href="{{ route('treatments') }}" class="nav-link">Treatments</a></li>
             <li class="nav-item"><a href="{{ route('blog') }}" class="nav-link">News</a></li>
-          <li class="nav-item"><a href="{{ route('contact') }}" class="nav-link">Contact</a></li>
+          <!-- <li class="nav-item"><a href="{{ route('contact') }}" class="nav-link">Contact</a></li> -->
           @if (Route::has('login'))
                 @auth
           <li class="nav-item">

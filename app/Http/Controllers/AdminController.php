@@ -384,4 +384,49 @@ public function news_store(Request $request)
         return back()->withSuccess('Form Submitted!');
     }
 }
+public function show_news(){
+
+    $show = Blog::all();
+    return view('admin.show_news',compact('show'));
+}
+
+public function delete_news($id){
+    $news = Blog::find($id);
+    $news->delete();
+    return redirect()->back();
+}
+
+public function update_news($id){
+    $data = Blog::find($id);
+    return view('admin.news_update',['update'=>$data]);
+}
+
+public function edit_news(Request $request, $id){
+
+    $request->validate([
+        'title' => 'required|string|max:255',       
+        'content' => 'required|string|max:255',
+        'date' => 'required|string|max:255',
+    ]);
+
+
+    $doctor = Blog::find($id);
+    // if (!$doctor) {
+    //     // Handle the case where the doctor is not found
+    //     return response()->json(['error' => 'Doctor not found.'], 404);
+    // }
+    $doctor->title=$request->title;
+    $doctor->content=$request->content;
+    $doctor->date=$request->date;
+
+    if ($request->hasFile('image')) {
+        $imageName = time() . '.' . $request->image->extension();
+        $request->image->move(public_path('doctor_image'), $imageName);
+        $doctor->image = $imageName;  // Update the image property
+    }
+    $doctor->save();
+    return redirect()->back()->withSuccess('Form Updated !!!!!');
+
+}
+
 }
